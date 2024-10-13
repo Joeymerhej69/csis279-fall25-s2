@@ -1,12 +1,16 @@
 const express = require('express');
-const { createOrder, getOrderById, updateOrder, deleteOrder, getAllOrders } = require('../controllers/orderController');
+const { getAllOrdersController,
+    getUserOrdersController,
+    createOrderController,
+    updateOrderController,
+    deleteOrderController, } = require('../Controllers/ordersController');
 const { orderValidationRules, validate } = require('../Validators/orderValidator');
 const router = express.Router();
 
-router.post('/orders', orderValidationRules, validate, createOrder);
-router.get('/orders', getAllOrders);
-router.get('/orders/:id', getOrderById);
-router.put('/orders/:id', orderValidationRules, validate, updateOrder);
-router.delete('/orders/:id', deleteOrder);
+router.post('/Createorders', orderValidationRules, validate, createOrderController);
+router.get('/getorders', getAllOrdersController);
+router.get('/ordersbyId/:id', getUserOrdersController);
+router.put('/Updateorders/:id', orderValidationRules, validate, updateOrderController);
+router.delete('/Deleteorders/:id', deleteOrderController);
 
 module.exports = router;

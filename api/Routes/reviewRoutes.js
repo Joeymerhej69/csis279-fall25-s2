@@ -1,12 +1,14 @@
 const express = require('express');
-const { createReview, getReviewById, updateReview, deleteReview, getAllReviews } = require('../controllers/reviewController');
+const { getAllReviewsController,
+    createReviewController,
+    updateReviewController,
+    deleteReviewController } = require('../Controllers/reviewsController');
 const { reviewValidationRules, validate } = require('../Validators/reviewValidator');
 const router = express.Router();
 
-router.post('/reviews', reviewValidationRules, validate, createReview);
-router.get('/reviews', getAllReviews);
-router.get('/reviews/:id', getReviewById);
-router.put('/reviews/:id', reviewValidationRules, validate, updateReview);
-router.delete('/reviews/:id', deleteReview);
+router.post('/CreateReviews', reviewValidationRules, validate, createReviewController);
+router.get('/GetAllReviews', getAllReviewsController);
+router.put('/UpdateReviews/:id', reviewValidationRules, validate, updateReviewController);
+router.delete('/DeleteReviews/:id', deleteReviewController);
 
 module.exports = router;

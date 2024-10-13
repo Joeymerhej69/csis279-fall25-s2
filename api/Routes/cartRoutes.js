@@ -1,12 +1,16 @@
 const express = require('express');
-const { addCartItem, getCartItemsByUserId, updateCartItem, deleteCartItem, getAllCartItems } = require('../controllers/cartController');
+const {  getAllCartItemsController,
+    getUserCartItemsController,
+    createCartItemController,
+    updateCartItemController,
+    deleteCartItemController, } = require('../Controllers/cartitemsController');
 const { cartValidationRules, validate } = require('../Validators/cartValidator');
 const router = express.Router();
 
-router.post('/cart-items', cartValidationRules, validate, addCartItem);
-router.get('/cart-items', getAllCartItems);
-router.get('/cart-items/:userId', getCartItemsByUserId);
-router.put('/cart-items/:id', cartValidationRules, validate, updateCartItem);
-router.delete('/cart-items/:id', deleteCartItem);
+router.post('/Createcart-items', cartValidationRules, validate, createCartItemController);
+router.get('/GetAllcart-items', getAllCartItemsController);
+router.get('/Getcart-itemsBy-User-Id/:userId', getUserCartItemsController);
+router.put('/UpdateCart-items/:id', cartValidationRules, validate, updateCartItemController);
+router.delete('/DeleteCart-items/:id', deleteCartItemController);
 
 module.exports = router;
